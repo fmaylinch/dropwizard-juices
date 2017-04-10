@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +45,24 @@ public class JuicesResource {
 
 
 	@GET
-	public List<Juice> getAll() {
+	public List<Juice> getAll(@QueryParam("available") Boolean available) {
 
-		return juices;
+		if (available == null) {
+			return juices;
+		}
+
+		List<Juice> juices2 = new ArrayList<>();
+
+		for (int i = 0; i < juices.size(); i++) {
+
+			Juice zumo = juices.get(i);
+
+			if (zumo.isAvailable() == available) {
+				juices2.add(zumo);
+			}
+
+		}
+
+		return juices2;
 	}
 }
