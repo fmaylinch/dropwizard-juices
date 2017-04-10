@@ -18,7 +18,7 @@ public class JuicesApplication extends Application<JuicesConfiguration> {
 
     @Override
     public void initialize(Bootstrap<JuicesConfiguration> bootstrap) {
-        // bootstrap.addBundle(new AssetsBundle("/assets/", "/"));
+        bootstrap.addBundle(new AssetsBundle("/assets/", "/"));
     }
 
     @Override
