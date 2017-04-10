@@ -24,6 +24,7 @@ public class JuicesApplication extends Application<JuicesConfiguration> {
     @Override
     public void run(JuicesConfiguration configuration, Environment environment) {
 
-        // environment.jersey().register(productResource);
+	    JuicesResource juiceResources = new JuicesResource();
+        environment.jersey().register(juiceResources);
     }
 }
