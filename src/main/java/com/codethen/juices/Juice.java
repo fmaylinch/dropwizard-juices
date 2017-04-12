@@ -1,10 +1,15 @@
 package com.codethen.juices;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Juice {
 
 	private String name;
 	private double price;
 	private boolean available;
+	public List<String> ingredientes = new ArrayList<>();
+
 
 
 	public String getName() {
