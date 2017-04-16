@@ -8,10 +8,13 @@ public class Juice {
 	private String name;
 	private double price;
 	private boolean available;
-	public List<String> ingredientes = new ArrayList<>();
+	private List<String> ingredients = new ArrayList<>();
 
 
-
+	public List<String> ingredients() {
+		return ingredients;
+	}
+	
 	public String getName() {
 		return name;
 	}

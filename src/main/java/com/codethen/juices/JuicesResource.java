@@ -28,37 +28,37 @@ public class JuicesResource {
 		zumo.setName("zumo naranja");
 		zumo.setPrice(3);
 		zumo.setAvailable(true);
-		zumo.ingredientes.add("agua");
-		zumo.ingredientes.add("naranja");
-		zumo.ingredientes.add("azucar");
+		zumo.ingredients().add("agua");
+		zumo.ingredients().add("naranja");
+		zumo.ingredients().add("azucar");
 		juices.add(zumo);
 
 		Juice zumo2 = new Juice();
 		zumo2.setName("zumo pomelo");
 		zumo2.setPrice(4);
 		zumo2.setAvailable(false);
-		zumo2.ingredientes.add("agua");
-		zumo2.ingredientes.add("pomelo");
-		zumo2.ingredientes.add("azucar");
+		zumo2.ingredients().add("agua");
+		zumo2.ingredients().add("pomelo");
+		zumo2.ingredients().add("azucar");
 		juices.add(zumo2);
 
 		Juice zumo3 = new Juice();
 		zumo3.setName("limonada");
 		zumo3.setPrice(2);
 		zumo3.setAvailable(true);
-		zumo3.ingredientes.add("agua");
-		zumo3.ingredientes.add("limon");
-		zumo3.ingredientes.add("azucar");
+		zumo3.ingredients().add("agua");
+		zumo3.ingredients().add("limon");
+		zumo3.ingredients().add("azucar");
 		juices.add(zumo3);
 		
 		Juice zumo4 = new Juice();
 		zumo4.setName("zumo detox");
 		zumo4.setPrice(5);
 		zumo4.setAvailable(true);
-		zumo4.ingredientes.add("agua");
-		zumo4.ingredientes.add("remolacha");
-		zumo4.ingredientes.add("zanahoria");
-		zumo4.ingredientes.add("apio");
+		zumo4.ingredients().add("agua");
+		zumo4.ingredients().add("remolacha");
+		zumo4.ingredients().add("zanahoria");
+		zumo4.ingredients().add("apio");
 		juices.add(zumo4);
 	}
 
@@ -70,7 +70,7 @@ public class JuicesResource {
 			return juices;
 		}
 
-		List<Juice> juices2 = new ArrayList<>();
+		List<Juice> result = new ArrayList<>();
 		
 		if (available != null && maxPrice == null) {
 			
@@ -79,7 +79,7 @@ public class JuicesResource {
 				Juice zumo = juices.get(i);
 
 				if (zumo.isAvailable() == available) {
-					juices2.add(zumo);
+					result.add(zumo);
 				}
 			}
 		}
@@ -91,7 +91,7 @@ public class JuicesResource {
 				Juice zumo = juices.get(i);
 			
 				if (zumo.getPrice() <= maxPrice && available == null) {
-					juices2.add(zumo);
+					result.add(zumo);
 				}
 			}
 		}
@@ -103,11 +103,12 @@ public class JuicesResource {
 				Juice zumo = juices.get(i);
 				
 				if (zumo.isAvailable() == available && zumo.getPrice() <= maxPrice) {
-					juices2.add(zumo);
+					result.add(zumo);
 				}
 			}
 		}
 		
-		return juices2;
+		
+		return result;
 	}
 }
