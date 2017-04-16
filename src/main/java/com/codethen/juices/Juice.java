@@ -10,8 +10,12 @@ public class Juice {
 	private boolean available;
 	private List<String> ingredients = new ArrayList<>();
 
-
-	public List<String> ingredients() {
+	
+	public void setIngredients(String ingredient) {
+		this.ingredients.add(ingredient);
+	}
+	
+	public List<String> getIngredients() {
 		return ingredients;
 	}
 	

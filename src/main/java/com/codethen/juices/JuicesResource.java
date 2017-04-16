@@ -28,37 +28,37 @@ public class JuicesResource {
 		zumo.setName("zumo naranja");
 		zumo.setPrice(3);
 		zumo.setAvailable(true);
-		zumo.ingredients().add("agua");
-		zumo.ingredients().add("naranja");
-		zumo.ingredients().add("azucar");
+		zumo.setIngredients("agua");
+		zumo.setIngredients("naranja");
+		zumo.setIngredients("azucar");
 		juices.add(zumo);
 
 		Juice zumo2 = new Juice();
 		zumo2.setName("zumo pomelo");
 		zumo2.setPrice(4);
 		zumo2.setAvailable(false);
-		zumo2.ingredients().add("agua");
-		zumo2.ingredients().add("pomelo");
-		zumo2.ingredients().add("azucar");
+		zumo2.setIngredients("agua");
+		zumo2.setIngredients("pomelo");
+		zumo2.setIngredients("azucar");
 		juices.add(zumo2);
 
 		Juice zumo3 = new Juice();
 		zumo3.setName("limonada");
 		zumo3.setPrice(2);
 		zumo3.setAvailable(true);
-		zumo3.ingredients().add("agua");
-		zumo3.ingredients().add("limon");
-		zumo3.ingredients().add("azucar");
+		zumo3.setIngredients("agua");
+		zumo3.setIngredients("limon");
+		zumo3.setIngredients("azucar");
 		juices.add(zumo3);
 		
 		Juice zumo4 = new Juice();
 		zumo4.setName("zumo detox");
 		zumo4.setPrice(5);
 		zumo4.setAvailable(true);
-		zumo4.ingredients().add("agua");
-		zumo4.ingredients().add("remolacha");
-		zumo4.ingredients().add("zanahoria");
-		zumo4.ingredients().add("apio");
+		zumo4.setIngredients("agua");
+		zumo4.setIngredients("remolacha");
+		zumo4.setIngredients("zanahoria");
+		zumo4.setIngredients("apio");
 		juices.add(zumo4);
 	}
 
@@ -66,48 +66,19 @@ public class JuicesResource {
 	@GET
 	public List<Juice> getAll(@QueryParam("available") Boolean available, @QueryParam("maxPrice") Double maxPrice) {
 
-		if (available == null && maxPrice == null) {
-			return juices;
-		}
-
+		
 		List<Juice> result = new ArrayList<>();
 		
-		if (available != null && maxPrice == null) {
+		for (int i = 0; i < juices.size(); i++) {
 			
-			for (int i = 0; i < juices.size(); i++) {
-
-				Juice zumo = juices.get(i);
-
-				if (zumo.isAvailable() == available) {
-					result.add(zumo);
-				}
+			Juice zumo = juices.get(i);
+			
+			if ((available != null && zumo.isAvailable() == available && maxPrice == null) || (maxPrice != null && zumo.getPrice() <= maxPrice && available == null) || ((available != null && maxPrice != null) && (zumo.isAvailable() == available && zumo.getPrice() <= maxPrice))) {
+				result.add(zumo);
+			}else if (available == null && maxPrice == null) {
+				return juices;
 			}
 		}
-		
-		if (available == null && maxPrice != null) {
-			
-			for (int i = 0; i < juices.size(); i++) {
-				
-				Juice zumo = juices.get(i);
-			
-				if (zumo.getPrice() <= maxPrice && available == null) {
-					result.add(zumo);
-				}
-			}
-		}
-		
-		if (available != null && maxPrice != null) {
-			
-			for (int i = 0; i < juices.size(); i++) {
-				
-				Juice zumo = juices.get(i);
-				
-				if (zumo.isAvailable() == available && zumo.getPrice() <= maxPrice) {
-					result.add(zumo);
-				}
-			}
-		}
-		
 		
 		return result;
 	}
