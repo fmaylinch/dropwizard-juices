@@ -28,37 +28,37 @@ public class JuicesResource {
 		zumo.setName("zumo naranja");
 		zumo.setPrice(3);
 		zumo.setAvailable(true);
-		zumo.setIngredients("agua");
-		zumo.setIngredients("naranja");
-		zumo.setIngredients("azucar");
+		zumo.getIngredients().add("agua");
+		zumo.getIngredients().add("naranja");
+		zumo.getIngredients().add("azucar");
 		juices.add(zumo);
 
 		Juice zumo2 = new Juice();
 		zumo2.setName("zumo pomelo");
 		zumo2.setPrice(4);
 		zumo2.setAvailable(false);
-		zumo2.setIngredients("agua");
-		zumo2.setIngredients("pomelo");
-		zumo2.setIngredients("azucar");
+		zumo2.getIngredients().add("agua");
+		zumo2.getIngredients().add("pomelo");
+		zumo2.getIngredients().add("azucar");
 		juices.add(zumo2);
 
 		Juice zumo3 = new Juice();
 		zumo3.setName("limonada");
 		zumo3.setPrice(2);
 		zumo3.setAvailable(true);
-		zumo3.setIngredients("agua");
-		zumo3.setIngredients("limon");
-		zumo3.setIngredients("azucar");
+		zumo3.getIngredients().add("agua");
+		zumo3.getIngredients().add("limon");
+		zumo3.getIngredients().add("azucar");
 		juices.add(zumo3);
 		
 		Juice zumo4 = new Juice();
 		zumo4.setName("zumo detox");
 		zumo4.setPrice(5);
 		zumo4.setAvailable(true);
-		zumo4.setIngredients("agua");
-		zumo4.setIngredients("remolacha");
-		zumo4.setIngredients("zanahoria");
-		zumo4.setIngredients("apio");
+		zumo4.getIngredients().add("agua");
+		zumo4.getIngredients().add("remolacha");
+		zumo4.getIngredients().add("zanahoria");
+		zumo4.getIngredients().add("apio");
 		juices.add(zumo4);
 	}
 
@@ -73,10 +73,8 @@ public class JuicesResource {
 			
 			Juice zumo = juices.get(i);
 			
-			if ((available != null && zumo.isAvailable() == available && maxPrice == null) || (maxPrice != null && zumo.getPrice() <= maxPrice && available == null) || ((available != null && maxPrice != null) && (zumo.isAvailable() == available && zumo.getPrice() <= maxPrice))) {
+			if ((maxPrice == null || maxPrice >= zumo.getPrice()) && (available == null || available == zumo.isAvailable())) {
 				result.add(zumo);
-			}else if (available == null && maxPrice == null) {
-				return juices;
 			}
 		}
 		

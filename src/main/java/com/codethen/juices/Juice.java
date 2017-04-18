@@ -11,8 +11,8 @@ public class Juice {
 	private List<String> ingredients = new ArrayList<>();
 
 	
-	public void setIngredients(String ingredient) {
-		this.ingredients.add(ingredient);
+	public void setIngredients(List<String> ingredients) {
+		this.ingredients = ingredients;
 	}
 	
 	public List<String> getIngredients() {
